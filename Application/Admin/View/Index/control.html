@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>专辑管理</title>
+<meta name='keywords' content='影视|影视在线|好先生' />
+<meta name='description' contents='影视在线->好先生' />
+<link href="__PUBLIC__/bootstrap/bootstrap.css" rel="stylesheet">
+<script src="__PUBLIC__/bootstrap/jquery.min.js"></script>
+<script src="__PUBLIC__/bootstrap/bootstrap.js"></script>
+
+<!--[if lt IE 9]>
+  <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<style>
+[class*='col-']{
+		margin-top:3px;
+	}
+  .row b{
+    color:red;
+  }
+  #footer{
+    margin-bottom:40px;
+  }
+
+  .p_i_s{
+    color:blue;
+    cursor:pointer;
+  }
+  #is,#ps{
+    display:none;
+  }
+  .gay3{
+    color:#A88CA8;
+  }
+  .pointers{
+    cursor:pointer;
+  }
+  .blue3{
+    color:#339BD5;
+  }
+</style>
+<body>
+
+{$data1.id}
+
+<div class='container'>
+ <h1>专辑管理</h1>
+ <div>
+	<span>2016-07-10</span>
+	<span class='blue3 pointers'>　影视在线</span>
+ </div>
+ <hr> 
+
+ <div class='row'>
+  <div class='col-xs-12'>
+    <a href='__MODULE__/Index/index/pnow/{$pnow}'>影视在线后台管理</a>->
+
+    专辑编辑
+  </div>
+</div><br>
+ 
+
+  <div class='row'>
+  <div class='col-xs-4 col-sm-2'>
+	<div style='border:1px solid;height:100px;'>
+		<img src='{$data.img}' width=100% height=100px/>
+	</div>
+  </div>
+  
+  <div class='col-xs-8 col-sm-10 '>
+	<div class='row vedio_list'>
+		<div class='col-xs-12'><b>片名：</b>{$data.pname}</div>
+		<div class='col-xs-12'><b>集数：</b>{$data.pnum}</div>
+		<div class='col-xs-12'><b>播放次数：</b>3515</div>
+	</div>
+  </div>
+</div>
+<div class='row' id='p_i'>
+	<div class='col-xs-12'><b>主演：</b>{$data.players}</div>
+	<div class='col-xs-12'><b>简介：</b>{$data.info}</div>
+</div>
+<hr>
+
+
+<div class='row' >
+  <volist name='data2' id='vo2'>
+    <div class='col-md-2 col-sm-2 col-xs-4' style='text-align:center'>
+      <a href="{$vo2.plink}" class='btn btn-success'>第{$vo2.porder}集</a>
+      <div>
+        <a  onclick="control_del('{$data.id}','{$vo2.id}')">删除</a>
+      </div>
+    </div>
+<script>
+  function control_del(did,vid){
+    if(confirm('确认删除？')){ 
+     location.href='__URL__/control_del/id/'+did+'/delid/'+vid;
+    }
+
+
+  }
+  
+</script>
+   </volist>
+</div>
+
+
+
+
+<hr>
+<a id='add' class='btn btn-info btn-block'>添加单集</a>
+<br>
+<a id='del' class='btn btn-warning btn-block'>删除全部</a>
+
+
+<div id='add_f' style='display:none'>
+<form action='__URL__/control_add' method='post'>
+    <input type='hidden' name='uid' value='{$data.id}' />
+  <div class="form-group">
+    <label for="exampleInputEmail1">集数</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="第几集" name='porder'>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">地址</label>
+    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="视频地址" name='plink'>
+  </div>
+ 
+  <button type="submit" class="btn btn-default">提交</button>
+</form>
+</div>
+
+<script>
+$(function(){
+  $('#add').click(function(){
+    $('#add_f').show();
+    $(this).hide();
+  });
+  $('#del').click(function(){
+    if(confirm('确认删除全部？')){
+      location.href='__URL__/delAll/uid/{$data.id}';
+    }
+  
+  });
+
+});
+</script>
+
+
+ <div id='footer' class='row' style='margin-top:20px'>
+  <div class='col-xs-9 gay3' >
+    <span class='blue3 pointers'>阅读原文　</span>
+    <span>阅读 100000+　</span>
+    
+    <span class='pointers'>
+    <img src='http://qianxing.b0.upaiyun.com/public/zhan1.png' align='bottom'>
+    <span >100000+</span>
+    <span>
+    
+  </div>
+  <div class='col-xs-3 text-right'>
+    <span class='pointers blue3' style=''>举报</span>
+  </div>
+ </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

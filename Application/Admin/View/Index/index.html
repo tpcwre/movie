@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>影视在线后台管理</title>
+<meta name='keywords' content='电视剧|影视在线|' />
+<meta name='description' contents='看电视剧尽在影视在线' />
+<link href="__PUBLIC__/bootstrap/bootstrap.css" rel="stylesheet">
+<script src="__PUBLIC__/bootstrap/jquery.min.js"></script>
+<script src="__PUBLIC__/bootstrap/bootstrap.js"></script>
+
+<!--[if lt IE 9]>
+  <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<style>
+	[class*='col-']{
+		margin-top:3px;
+		
+		word-break:break-all;
+	}
+	.vedio_list > div:nth-child(2),.vedio_list > div:nth-child(3){
+		margin-top:8px;
+	}
+	.row b{
+		color:red;
+
+	}
+	#footer{
+		margin-bottom:40px;
+	}
+
+	.gay3{
+		color:#A88CA8;
+	}
+	.pointers{
+		cursor:pointer;
+	}
+	.blue3{
+		color:#339BD5;
+	}
+	.p_i_2{
+		color:blue;
+		cursor:pointer;
+	}
+	.pis{
+		display:none;
+	}
+</style>
+<body>
+<div class='container'>
+ <h1>影视在线后台管理</h1>
+ <div>
+	<span>2016-07-10</span>
+	<span class='blue3 pointers'>　影视在线</span>
+
+ </div><hr> 
+
+
+<form class="form-inline" method='post' action='__ACTION__'>
+  <div class="form-group">
+    <input type="text" class="form-control" id="exampleInputName2" placeholder="查找......" name='searchContent' value='{$searchContent}'>
+  </div>
+  <div class="form-group">
+
+        <select class="form-control" name='searchType'>
+                <option value='pname' {$pname}>按片名</option>
+                <option value='players' {$players}>按演员</option>
+        </select>
+  </div>
+  <button type="submit" class="btn btn-default"><span class='glyphicon glyphicon-search'></span></button>
+</form>
+<br>
+
+
+ <div class='row'>
+	<div class='col-xs-12'>
+		<a href='__APP__/Admin/Index/add' class='btn btn-success' style='width:200px'>添加专辑</a>
+	</div>
+ </div>
+<br>
+
+
+<div class='row'>
+<volist name='data' id='vo'>
+	<div class='col-sm-6 col-md-6 col-lg-4' style=';padding:10px;border:1px solid #ccc;margin-bottom:10px'>
+		<div class='row'>
+			<div class='col-xs-4 col-sm-4' style=''>
+				<img src='{$vo.img}' width=100% height=100px/>
+			</div>
+			<div class='col-xs-8 col-sm-8' style=''>
+				<div class='row'>
+					<div class='col-xs-12'><b>片名：</b>{$vo.pname}</div>
+					<div class='col-xs-12'><b>集数：</b>{$vo.pnum}</div>
+					<div class='col-xs-12'><a href='__APP__/Home/Index/index2/pnow/{$pnow}/id/{$vo.id}' class='btn btn-info'>点击观看</a></div>
+				</div>
+			</div>
+		</div>
+		<div class='row p_i'>
+			<div class='col-xs-12'><b>主演：</b><span id='p{$a}'></span><span class='p_i_2' id='pz{$a}'>.....展开</span><span class='pis p_i_2' id='ps{$a}'>　收起</span></div>
+			<div class='col-xs-12'><b>简介：</b><span id='i{$a}'></span><span class='p_i_2' id='iz{$a}'>.....展开</span><span class='pis p_i_2' id='is{$a}'>　收起</span></div>
+		</div>
+		<div class='row'>
+			<div class='col-xs-12 pointers blue3'>
+				<span><a href='__APP__/Admin/Index/edit/id/{$vo.id}/pnow/{$pnow}'>编辑</a></span>
+				<span><a href='__APP__/Admin/Index/control/pnow/{$pnow}/id/{$vo.id}' >管理</a></span>
+				<span><a href='__APP__/Admin/Index/del/pnow/{$pnow}/id/{$vo.id}' >删除</a></span>
+			</div>
+		</div>
+	</div>
+<script>
+	$(function(){
+		var strp = '{$vo.players}';
+		var strp2 = strp.substring(0,3);
+		$('#p{$a}').html(strp2);
+
+		$('#pz{$a}').click(function(){
+			$('#p{$a}').html(strp);
+			$('#pz{$a}').hide();
+			$('#ps{$a}').show();
+		});
+		$('#ps{$a}').click(function(){
+			$('#p{$a}').html(strp2);
+			$('#ps{$a}').hide();
+			$('#pz{$a}').show();
+		});
+		var stri='{$vo.info}';
+		var stri2 = stri.substring(0,15);
+		$("#i{$a}").html(stri2);
+		$('#iz{$a}').click(function(){
+			$('#i{$a}').html(stri);
+			$('#iz{$a}').hide();
+			$('#is{$a}').show();
+		});
+		$('#is{$a}').click(function(){
+			$('#i{$a}').html(stri2);
+			$('#is{$a}').hide();
+			$('#iz{$a}').show();
+		});
+	});
+
+</script>
+
+<div style='display:none'>{$a++}</div>
+
+</volist>
+</div>
+<br>
+<!--
+<volist name='data' id='vo'>
+	
+	 <div class='row'>
+	  <div class='col-xs-4 col-sm-2'>
+		<div style='border:1px solid;height:100px;'>
+			<img src='{$vo.img}' width=100% height=100px/>
+		</div>
+	  </div>
+	  
+	  <div class='col-xs-8 col-sm-10 '>
+		<div class='row vedio_list'>
+			<div class='col-xs-12'>
+				<div class='col-xs-6' style='margin:0;padding:0'>
+				<b>片名：</b>{$vo.pname}
+				</div>
+				<div class='col-xs-6 text-right pointers blue3' style='margin:0;padding:0'>
+					<span><a href='__APP__/Admin/Index/edit/id/{$vo.id}/pnow/{$pnow}'>编辑</a></span>
+					<span><a href='__APP__/Admin/Index/control/pnow/{$pnow}/id/{$vo.id}' >管理</a></span>
+
+					<span><a href='__APP__/Admin/Index/del/pnow/{$pnow}/id/{$vo.id}' >删除</a></span>
+				</div>
+			</div>
+
+			<div class='col-xs-12'><b>集数：</b>{$vo.pnum}</div>
+
+			<div class='col-xs-12'><a href='__APP__/Home/Index/index2/id/{$vo.id}' class='btn btn-info' target='_blank'>点击观看</a></div>
+		</div>
+	  </div>
+	</div>
+	<div class='row p_i'>
+		<div class='col-xs-12'><b>主演：</b><span id='p{$a}'></span><span class='p_i_2' id='pz{$a}'>.....展开</span><span class='pis p_i_2' id='ps{$a}'>　收起</span></div>
+		<div class='col-xs-12'><b>简介：</b><span id='i{$a}'></span><span class='p_i_2' id='iz{$a}'>.....展开</span><span class='pis p_i_2' id='is{$a}'>　收起</span></div>
+	</div>
+	<script>
+		$(function(){
+			var strp = '{$vo.players}';
+			var strp2 = strp.substring(0,3);
+			$('#p{$a}').html(strp2);
+
+			$('#pz{$a}').click(function(){
+				$('#p{$a}').html(strp);
+				$('#pz{$a}').hide();
+				$('#ps{$a}').show();
+			});
+			$('#ps{$a}').click(function(){
+				$('#p{$a}').html(strp2);
+				$('#ps{$a}').hide();
+				$('#pz{$a}').show();
+			});
+			var stri='{$vo.info}';
+			var stri2 = stri.substring(0,10);
+			$("#i{$a}").html(stri2);
+			$('#iz{$a}').click(function(){
+				$('#i{$a}').html(stri);
+				$('#iz{$a}').hide();
+				$('#is{$a}').show();
+			});
+			$('#is{$a}').click(function(){
+				$('#i{$a}').html(stri2);
+				$('#is{$a}').hide();
+				$('#iz{$a}').show();
+			});
+		});
+
+	</script>
+	<hr>
+
+<script>
+
+
+
+</script>
+
+<div style='display:none'>{$a++}</div>
+</volist>
+-->
+
+<nav>
+  <ul class="pagination">
+    <li>
+      <a href="__APP__/Admin/Index/index/pnow/{$last}{$param}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    	<for start='$min' end='$max' comparison='elt' name='k'> 
+    		<if condition='$pnow eq $k'>
+    		<li ><a style='background:#cff' href="__APP__/Admin/Index/index/pnow/{$k}{$param}">{$k}</a></li>
+    		<else/>
+    		<li><a href="__APP__/Admin/Index/index/pnow/{$k}{$param}">{$k}</a></li>
+    		</if>
+    	</for>
+    <li>
+      <a href="__APP__/Admin/Index/index/pnow/{$next}{$param}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+    <li>
+        <span aria-hidden="true">......</span>
+    </li>
+
+    <li>
+    	<span aria-hidden="true">
+        <select style='height:20px' id='go_v'>
+        	<for start='1' end='$pnum' comparison='elt' name='k'>
+        		<if condition='$pnow eq $k'>
+					<option selected>{$k}</option>
+        		<else/>
+					<option>{$k}</option>
+        		</if>
+			</for>
+        </select>
+    	</span>
+    </li>
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true" id='go'>go</span>
+      </a>
+      <script>
+      	$(function(){
+      		$('#go').click(function(){
+      			var pv = $('#go_v').val();
+      			location.href="__APP__/Admin/Index/index/pnow/"+pv+'{$param}';
+      		});
+      	});
+      </script>
+    </li>
+  </ul>
+</nav>
+
+
+
+
+ <div id='footer' class='row' style='margin-top:20px'>
+	<div class='col-xs-9 gay3' >
+		<span class='blue3 pointers'>阅读原文　</span>
+		<span>阅读 13205　</span>
+		
+		<span class='pointers'>
+		<img src='http://qianxing.b0.upaiyun.com/public/zhan1.png' align='bottom'>
+		<span >582</span>
+		<span>
+		
+	</div>
+	<div class='col-xs-3 text-right'>
+		<span class='pointers blue3' style=''>举报</span>
+	</div>
+ </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

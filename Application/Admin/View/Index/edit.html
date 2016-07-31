@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>专辑编辑</title>
+<link href="__PUBLIC__/bootstrap/bootstrap.css" rel="stylesheet">
+<script src="__PUBLIC__/bootstrap/jquery.min.js"></script>
+<script src="__PUBLIC__/bootstrap/bootstrap.js"></script>
+
+<!--[if lt IE 9]>
+  <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<style>
+
+</style>
+<body>
+
+
+
+
+<div class='container'>
+<h1>专辑编辑</h1>
+<div> 
+  <span>2016-07-16</span>
+  <span style='color:blue;'>　影视在线</span>
+</div>
+<hr>
+<div class='row'>
+  <div class='col-xs-12'>
+    <a href='__MODULE__/Index/index/pnow/{$pnow}'>影视在线后台管理</a>->
+
+    专辑编辑
+  </div>
+</div><br>
+
+<form method='post' action='__APP__/Admin/Index/edit_c/pnow/{$pnow}'>
+  <input type='hidden' name='id' value='{$data2['id']}' />
+  <div class="form-group">
+    <label for="pname">片名：</label>
+    <input type="text" class="form-control" id="pname" name='pname' placeholder="片名" value='{$data2['pname']}'>
+  </div>
+  <div class="form-group">
+    <label for="img">图片：</label>
+    <input type="text" class="form-control" id="img" name='img' placeholder="封面图片" value='{$data2['img']}'>
+  </div>
+  <div class="form-group">
+    <label for="pnum">集数：</label>
+    <input type="text" class="form-control" id="pnum" name='pnum' placeholder="集数" value='{$data2['pnum']}'>
+  </div>
+  <div class="form-group">
+    <label for="players">主演：</label>
+    <input type="text" class="form-control" id="players" name='players' placeholder="主演" value='{$data2['players']}'>
+  </div>
+  <div class="form-group">
+    <label for="info">简介：</label>
+    <input type="text" class="form-control" id="info" name='info' placeholder="简介" value='{$data2['info']}'>
+  </div>
+
+
+  <input type="submit" class="btn btn-default" value='提交'></input>
+  <button type="reset" class="btn btn-default">重置</button>
+</form>
+
+
+</div>
+
+
+
+
+</body>
+</html>
