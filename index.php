@@ -1,5 +1,6 @@
 ﻿<?php
-
+date_default_timezone_set('PRC');
+header('content-type:text/html;charset=utf-8');
 if(version_compare(PHP_VERSION,'5.3.0','<'))  die('require PHP > 5.3.0 !');
 
 function msg($arr){
