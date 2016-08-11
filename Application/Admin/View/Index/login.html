@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>影视在线后台管理</title>
+<meta name='keywords' content='电视剧|影视在线|' />
+<meta name='description' contents='看电视剧尽在影视在线' />
+<link href="__PUBLIC__/bootstrap/bootstrap.css" rel="stylesheet">
+<script src="__PUBLIC__/bootstrap/jquery.min.js"></script>
+<script src="__PUBLIC__/bootstrap/bootstrap.js"></script>
+
+<!--[if lt IE 9]>
+  <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<style>
+	[class*='col-']{
+		margin-top:3px;
+		
+		word-break:break-all;
+	}
+	.vedio_list > div:nth-child(2),.vedio_list > div:nth-child(3){
+		margin-top:8px;
+	}
+	.row b{
+		color:red;
+
+	}
+	#footer{
+		margin-bottom:40px;
+	}
+
+	.gay3{
+		color:#A88CA8;
+	}
+	.pointers{
+		cursor:pointer;
+	}
+	.blue3{
+		color:#339BD5;
+	}
+	.p_i_2{
+		color:blue;
+		cursor:pointer;
+	}
+	.pis{
+		display:none;
+	}
+</style>
+<body>
+<div class='container'>
+ <h1>后台管理登陆</h1>
+ <div>
+	<span><php>echo date('Y-m-d')</php></span>
+	<span class='blue3 pointers'>　影视在线</span>
+
+ </div><hr> 
+<h3 style='color:red'>{$loginError | default = ''}</h3>
+<form class="" method='post' action='__URL__/login_c'>
+  <div class="form-group">用户名：
+    <input type="text" class="form-control" id="exampleInputName2" name='username'>
+  </div>
+  <div class="form-group">密码：
+    <input type="password" class="form-control" id="exampleInputName2" name='password'>
+  </div>
+  <div class="form-group">验证码：
+    <input type="text" class="form-control" id="exampleInputName2" name='vcode'>
+    <img src='__URL__/verify' onclick="this.src='__URL__/verify/id/'+Math.random()"/>
+  </div>
+
+  <button type="submit" class="btn btn-default">登陆</button>
+  <button type="reset" class="btn btn-default">重置</button>
+</form>
+<br>
+
+
+
+
+
+
+ <div id='footer' class='row' style='margin-top:20px'>
+	<div class='col-xs-9 gay3' >
+		<span class='blue3 pointers'>阅读原文　</span>
+		<span>阅读 256　</span>
+		
+		<span class='pointers'>
+		<img src='http://qianxing.b0.upaiyun.com/public/zhan1.png' align='bottom'>
+		<span >2</span>
+		<span>
+		
+	</div>
+	<div class='col-xs-3 text-right'>
+		<span class='pointers blue3' style=''>举报</span>
+	</div>
+ </div>
+</div>
+</body>
+</html>
